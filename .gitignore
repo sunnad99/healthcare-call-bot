@@ -1,0 +1,5 @@
+*.ipynb
+.env
+*.pyc
+__pycache__/
+miscellaneous/

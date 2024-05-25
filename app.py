@@ -1,7 +1,11 @@
-from fastapi import FastAPI
 import uvicorn
+from fastapi import FastAPI
+
+from routes import get_surveyor_info
 
 app = FastAPI()
+
+app.include_router(get_surveyor_info.router)
 
 
 @app.get("/")
@@ -10,4 +14,4 @@ def read_root():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run("app:app", reload=True)

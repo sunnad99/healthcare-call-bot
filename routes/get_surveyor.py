@@ -18,8 +18,8 @@ class SurveyorInfoResponse(BaseModel):
     role: int
 
 
-@router.get("/surveyor_info", response_model=SurveyorInfoResponse)
-async def get_surveyor_info():
+@router.get("/surveyor", response_model=SurveyorInfoResponse)
+async def get_surveyor():
 
     user_info = get_user_details(jwt=False)
 

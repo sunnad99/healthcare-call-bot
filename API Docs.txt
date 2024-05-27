@@ -1,0 +1,104 @@
+1. Get Surveyor endpoint returns surveyor's information. Here the "id" field is important and it will be used in the following endpoints:
+    - Get Calls
+    - Get Survey
+    - Get Questionnaire
+
+2. Get Survey API returns the information about the survey/questionnaires for a given surveyor id.
+NOTE: The survey returns a project id which is found within the "assignment" object under the "projectId" field.
+Please note key scenarios:
+
+    - If there is only 1 survey found, only its details will be returned.
+    - If multiple surveys are found, all of them will be returned.
+    - If no surveys are found, only a message is return indicating that
+
+
+3. Get Calls endpoint returns a random patient's data.
+
+Every time this endpoint is requested, a different caller's data is retrieved.
+Only call this once per person
+
+Secondly, for every question in the questionnaire (more on this in the next point)
+This dynamic information can be found within the "visitInfos" array. Each object represents a dynamic piece of information.
+The object has the key name as "field" and the value is stored within "value".
+
+4. The Get Questionnaire endpoint provides 3 things:
+    - The questionnaire itself
+    - The logic to handling branching/skip connections of questions
+    - The total number of questions.
+        - This lets us know how many ACTUAL questions there are to ask.
+
+The questions in the questionnaire require dynamic details which are obtained from the Get Calls endpoint.
+The dynamic information is encoded with 2 double angled brackets (<< and >>) in each question.
+The question's contents can be read from the "langQuestions" field of a given questions object and access the "quesText" to read the question itself.
+
+Each question has answers information as well.
+This can be found within the "answer" array which provides all the options.
+For any answer that is chosen, extract the "id" field from the chosen answer object.
+
+Algorithm for skipping questions:
+    The bot needs to keep track of each question and answer pair.
+    To do this, the "quesSequence" from the question object and "id" field from the chosen answer object must be kept as a pair.
+
+    Whenever a new question is encountered from the questionnaire, before converting it to speech, the bot should check the current question against the "logic" array
+    to find out if it should be asked or not. To do this, do the following steps:
+
+        - Take the "quesSequence" of the current question that's about to be asked
+        - Locate it within the "logic" array by matching it to the "affectedQuestionId" field
+        - For the filtered objects obtained from matching, check if any of the "questionId" and "answerId" have already been selected in the object pairs mentioned prior.
+        - If a match is found in the history of selections, that means the question should be skipped
+        - Otherwise, ask the question through text to speech
+
+        EXAMPLE:
+        Say the user answered question 1 with an answer id of 5,
+        then the current history with the answered question pair looks like.
+            [{"questionId" 1, "answerId": 5}]
+
+        Now, before asking question 2 through speech, we need to see if question 2 is skipped or not.
+        In the logic array, lets say we saw that question 2 would be skipped if the answer to question 1 was 5,
+        one of the objects will look as follows:
+                            {
+                                "affectedQuestionId": 2,
+                                "answerId": 5,
+                                "id": 39986,
+                                "projectId": 116,
+                                "questionId": 1,
+                                "rosterField": "",
+                                "rosterValue": "",
+                                "viaRoster": false,
+                                "answer": {
+                                    "id": 360,
+                                    "title": "N/A"
+                                }
+                            }
+
+        Now, matching the "questionId" and "answerId" from this logic object to the history of selected answers, we see that question 2
+        needs to be skipped.
+
+        NOTE: A single question can be rejected by multiple questions already answered. So either one of them is sufficient to skip the current question that is being observed.
+        NOTE#2: Some questions don't have any skip connections so they are not affected and should be asked. This will happen when, after filtering the logic array, you don't get a single object.
+        NOTE#3: Some questions will not have any "answerId" and/or "questionId". These questions can simply be asked and shouldn't be skipped either.
+
+5. Submit questionnaire endpoint will submit the results of a given questionnaire for a given patient.
+This endpoint expects the answers in the following format:
+    survey: This is a list of objects where each object is an answer. This includes answers that were answered by the patient and also the skipped answers too (more on this later).
+
+    An answer object has the following structure:
+
+        quesId: int
+        ansId: int or null
+        sequence: int
+        uniqueId: str
+        callId: int
+        openEnded: str or null
+        projectId: int
+
+    - The quesId is obtained from the "quesId" of a question object within the questionnaire obtained from the previous endpoint.
+    - The ansId is obtained from the chosen answer.
+    For questions that cannot be answered or skipped questions, their ansId gets set to null
+    - sequence is obtained from the "sequence" field for a given question object.
+    - uniqueId has to be a SHA-1 generated string
+    NOTE: Only 1 uniqueId needs to be generated and then the same id is set for ALL the answer objects passed into this endpoint
+    - callId is obtained from the Get Calls endpoint that outlines the patient's details
+    - openEnded is set to null under normal circumstances when there is an answer.
+    For when there isn't an answer i.e. ansId is set to null, then openEnded get set to "N/A"
+    - projectId is obtained from the Get Survey endpoint as mentioned above

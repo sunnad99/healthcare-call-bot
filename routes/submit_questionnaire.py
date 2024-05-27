@@ -11,8 +11,8 @@ router = APIRouter()
 
 
 class Answer(BaseModel):
-    quesId: None or int
-    ansId: int
+    quesId: int
+    ansId: None or int
     sequence: int
     uniqueId: str
     callId: int

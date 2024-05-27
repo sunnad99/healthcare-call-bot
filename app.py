@@ -1,12 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
 
-from routes import get_surveyor, get_call_info
+from routes import get_surveyor, get_calls, get_questionnaire
 
 app = FastAPI()
 
 app.include_router(get_surveyor.router)
-app.include_router(get_call_info.router)
+app.include_router(get_calls.router)
+app.include_router(get_questionnaire.router)
 
 
 @app.get("/")

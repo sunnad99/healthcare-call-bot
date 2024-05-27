@@ -1,11 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 
-from routes import get_surveyor, get_calls, get_questionnaire, submit_questionnaire
+from routes import get_surveyor, get_survey, get_calls, get_questionnaire, submit_questionnaire
 
 app = FastAPI()
 
 app.include_router(get_surveyor.router)
+app.include_router(get_survey.router)
 app.include_router(get_calls.router)
 app.include_router(get_questionnaire.router)
 app.include_router(submit_questionnaire.router)

@@ -23,4 +23,4 @@ def read_root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", reload=True)
+    uvicorn.run(app, port="8000")

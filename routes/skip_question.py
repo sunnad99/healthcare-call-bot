@@ -1,18 +1,11 @@
 import pandas as pd
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 
 from .route_params.generic import BadRequestResponse, UnauthorizedResponse
 
 router = APIRouter()
-
-
-class SkipQuestionInput(BaseModel):
-    skip_logic: list[dict]
-    answer_history: list[dict]
-    question_id: int
 
 
 @router.post(
@@ -22,9 +15,9 @@ class SkipQuestionInput(BaseModel):
         status.HTTP_401_UNAUTHORIZED: {"model": UnauthorizedResponse},
     },
 )
-async def skip_question(request_body: SkipQuestionInput):
+async def skip_question(request: Request):
 
-    payload = request_body.dict()
+    payload = await request.json()
 
     skip_logic = payload["skip_logic"]
     answer_history = payload["answer_history"]

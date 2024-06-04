@@ -30,6 +30,8 @@ async def skip_question(request_body: SkipQuestionInput):
     answer_history = payload["answer_history"]
     quest_id = payload["question_id"]
 
+    print("Answer history is: ", answer_history)
+
     skip_logic_df = pd.DataFrame(skip_logic)
     answer_history_df = pd.DataFrame(answer_history)
 

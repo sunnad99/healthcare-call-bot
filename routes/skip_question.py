@@ -16,7 +16,7 @@ class SkipQuestionInput(BaseModel):
 
 
 @router.post(
-    "/skip_connection",
+    "/skip_question",
     responses={
         status.HTTP_400_BAD_REQUEST: {"model": BadRequestResponse},
         status.HTTP_401_UNAUTHORIZED: {"model": UnauthorizedResponse},

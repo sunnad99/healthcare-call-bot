@@ -64,13 +64,14 @@ async def get_questionnaire(project_id: int, surveyor_id: int):
         )
 
     response_json = response.json()
-    questionnaire, logic, total_questions = process_response(response_json)
+
+    questionnaire = response_json["questionnaire"]
+    logic = response_json["logic"]
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content={
             "questionnaire": questionnaire,
             "logic": logic,
-            "total_questions": total_questions,
         },
     )

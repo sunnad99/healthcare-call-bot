@@ -45,21 +45,14 @@ async def get_survey(surveyor_id: int):
     count = response_json["count"]
     data = response_json["rows"]
 
-    # if count is 1, return the data as a single object instead of a list
+    # If no survey found for the surveyor, return a message.
     if count == 0:
         return JSONResponse(
-            status_code=status.HTTP_200_OK,
+            status_code=status.HTTP_404_NOT_FOUND,
             content={"message": "No survey found for the surveyor."},
-        )
-
-    elif count == 1:
-        data = data[0]
-        return JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content=data,
         )
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,
-        content=data,
+        content=data[0],
     )

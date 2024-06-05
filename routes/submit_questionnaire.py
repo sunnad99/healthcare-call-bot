@@ -16,13 +16,14 @@ class Answer(BaseModel):
     sequence: int
     uniqueId: str
     callId: int
-    openEnded: None or str
+    openEnded: None or str  # None if ansId else "N/A" TODO: check this
     projectId: int
 
 
 class SubmitQuestionnaireInput(BaseModel):
     survey: list[Answer]
     isPut: bool = False
+    pathway_id: str
 
 
 @router.post(
@@ -35,6 +36,9 @@ class SubmitQuestionnaireInput(BaseModel):
 async def submit_questionnaire(request_body: SubmitQuestionnaireInput):
 
     payload = request_body.dict()
+
+    # TODO: Make sure the payload doesn't have answers with no answer Ids
+    # TODO: Pass in the pathway-id as well in here
 
     auth_token = get_user_details()
     url = "https://beta.api.cg-osms.com/call-survey"
@@ -59,6 +63,8 @@ async def submit_questionnaire(request_body: SubmitQuestionnaireInput):
 
     call_id = payload[0]["callId"]
     project_id = payload[0]["projectId"]
+
+    # TODO: Delete the previously created pathway using the pathway id
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,

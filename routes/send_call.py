@@ -1,8 +1,12 @@
+import json
 import requests
+import phonenumbers
 from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+
+from config import BASE_URL
 from credentials import BLAND_API_KEY
 from services.bland_ai.main import (
     create_nodes_and_edges,
@@ -32,7 +36,6 @@ async def send_call(request_body: SendCallInput):
     payload = request_body.dict()
     quest_data = payload["quest_data"]
     caller_data = payload["caller_data"]
-    skip_logic = quest_data["logic"]
     patient_lang_id = caller_data["languageId"]
 
     # Fill all the placeholders in the questionnaire and format the answers array
@@ -44,17 +47,16 @@ async def send_call(request_body: SendCallInput):
         axis=1,
     )
     print("Questionnaire question and answer data extracted successfully...")
-    # Create the pathway
 
+    # Create the pathway
     print("Creating pathway...")
     url = "https://api.bland.ai/v1/convo_pathway/create"
-    project_id, call_id, patient_name, center, provider, phone_number = (
+    project_id, call_id, patient_name, center, provider = (
         caller_data["projectId"],
         caller_data["callId"],
         caller_data["visitorName"],
         caller_data["center"],
         caller_data["provider"],
-        caller_data["phoneCell"] if caller_data.get("phoneCell") else caller_data.get("phoneHome"),
     )
     pathway_name = f"{project_id} - {call_id} - {patient_name} - {center} - {provider}"
     payload = {"name": pathway_name}
@@ -82,7 +84,12 @@ async def send_call(request_body: SendCallInput):
     print("Updating pathway...")
     pathway_id = response_json["pathway_id"]
     url = f"https://api.bland.ai/v1/convo_pathway/{pathway_id}"
-    nodes, edges = create_nodes_and_edges(quest_with_text_df, caller_data, skip_logic=skip_logic, pathway_id=pathway_id)
+    nodes, edges = create_nodes_and_edges(
+        quest_with_text_df,
+        quest_data=quest_data,
+        caller_data=caller_data,
+        pathway_id=pathway_id,
+    )
     payload = {"name": pathway_name, "nodes": nodes, "edges": edges}
     headers = {
         "Authorization": BLAND_API_KEY,
@@ -105,14 +112,48 @@ async def send_call(request_body: SendCallInput):
             content={"message": "Error creating pathway...there was an issue with the request"},
         )
     print("Pathway updated successfully...")
-    # TODO: Make a call to the send call API
+    # TODO: Uncomment this when the call API is ready
+    # # Make a call to the send call API
+    # phone_number_raw = caller_data["phoneCell"] if caller_data.get("phoneCell") else caller_data.get("phoneHome")
+    # formatted_phone_number = phonenumbers.format_number(
+    #     phonenumbers.parse(phone_number_raw, "US"), phonenumbers.PhoneNumberFormat.E164
+    # )
+    # url = "https://api.bland.ai/v1/calls"
+    # payload = {
+    #     "phone_number": formatted_phone_number,
+    #     "pathway_id": pathway_id,
+    #     "start_node_id": "Question 1",
+    #     "voice": "Jordan",  # TODO: Set voice here
+    #     "interruption_threshold": 200,
+    #     "max_duration": 60,
+    #     "record": True,
+    #     "webhook": f"{BASE_URL}/questionnaire/submit",
+    #     "request_data": {
+    #         "pathway_id": pathway_id,
+    #         "pathway_name": pathway_name,
+    #         "questionnaire": json.dumps(quest_data),
+    #         "chcs_call_id": call_id,
+    #         "phone_number": formatted_phone_number,
+    #     },
+    # }
+    # headers = {"Authorization": BLAND_API_KEY, "Content-Type": "application/json"}
+    # response = requests.request("POST", url, headers=headers, json=payload)
+    # response_json = response.json()
+    # status_msg = response_json["status"]
+    # if status_msg != "success":
+
+    #     errors = response_json["errors"]
+    #     msg = response_json["message"]
+    #     print(f"Couldn't make a call to the patient...{msg}...with errors: {errors}")
+    #     return JSONResponse(
+    #         status_code=status.HTTP_400_BAD_REQUEST,
+    #         content={"message": f"Couldn't make a call to the patient...{msg}"},
+    #     )
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,
         content={
             "message": "Call successfully made to the client",
-            "nodes": nodes,
-            "edges": edges,
             "pathway_id": pathway_id,
         },
     )

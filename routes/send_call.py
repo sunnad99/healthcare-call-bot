@@ -40,12 +40,8 @@ async def send_call(request_body: SendCallInput):
 
     # Fill all the placeholders in the questionnaire and format the answers array
     print("Extracting questionnaire question and answer data...")
-    quest_with_text_df = extract_questionnaire_text(quest_data, caller_data, lang_id=1)
-    quest_with_text_df["answer"] = quest_with_text_df.apply(
-        extract_answers,
-        args=(patient_lang_id,),
-        axis=1,
-    )
+    quest_with_text_df = extract_questionnaire_text(quest_data, caller_data, lang_id=patient_lang_id)
+    quest_with_text_df["answer"] = quest_with_text_df.apply(extract_answers, args=(patient_lang_id,), axis=1)
     print("Questionnaire question and answer data extracted successfully...")
 
     # Create the pathway
@@ -112,43 +108,43 @@ async def send_call(request_body: SendCallInput):
             content={"message": "Error creating pathway...there was an issue with the request"},
         )
     print("Pathway updated successfully...")
-    # TODO: Uncomment this when the call API is ready
-    # # Make a call to the send call API
-    # phone_number_raw = caller_data["phoneCell"] if caller_data.get("phoneCell") else caller_data.get("phoneHome")
-    # formatted_phone_number = phonenumbers.format_number(
-    #     phonenumbers.parse(phone_number_raw, "US"), phonenumbers.PhoneNumberFormat.E164
-    # )
-    # url = "https://api.bland.ai/v1/calls"
-    # payload = {
-    #     "phone_number": formatted_phone_number,
-    #     "pathway_id": pathway_id,
-    #     "start_node_id": "Question 1",
-    #     "voice": "Jordan",  # TODO: Set voice here
-    #     "interruption_threshold": 200,
-    #     "max_duration": 60,
-    #     "record": True,
-    #     "webhook": f"{BASE_URL}/questionnaire/submit",
-    #     "request_data": {
-    #         "pathway_id": pathway_id,
-    #         "pathway_name": pathway_name,
-    #         "questionnaire": json.dumps(quest_data),
-    #         "chcs_call_id": call_id,
-    #         "phone_number": formatted_phone_number,
-    #     },
-    # }
-    # headers = {"Authorization": BLAND_API_KEY, "Content-Type": "application/json"}
-    # response = requests.request("POST", url, headers=headers, json=payload)
-    # response_json = response.json()
-    # status_msg = response_json["status"]
-    # if status_msg != "success":
 
-    #     errors = response_json["errors"]
-    #     msg = response_json["message"]
-    #     print(f"Couldn't make a call to the patient...{msg}...with errors: {errors}")
-    #     return JSONResponse(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         content={"message": f"Couldn't make a call to the patient...{msg}"},
-    #     )
+    # Make a call to the send call API
+    phone_number_raw = caller_data["phoneCell"] if caller_data.get("phoneCell") else caller_data.get("phoneHome")
+    formatted_phone_number = phonenumbers.format_number(
+        phonenumbers.parse(phone_number_raw, "US"), phonenumbers.PhoneNumberFormat.E164
+    )
+    url = "https://api.bland.ai/v1/calls"
+    payload = {
+        "phone_number": formatted_phone_number,
+        "pathway_id": pathway_id,
+        "start_node_id": "Question 1",
+        "voice": "Jordan",  # TODO: Set voice here
+        "interruption_threshold": 200,
+        "max_duration": 60,
+        "record": True,
+        "webhook": f"{BASE_URL}/questionnaire/submit",
+        "request_data": {
+            "pathway_id": pathway_id,
+            "pathway_name": pathway_name,
+            "questionnaire": json.dumps(quest_data),
+            "chcs_call_id": call_id,
+            "phone_number": formatted_phone_number,
+        },
+    }
+    headers = {"Authorization": BLAND_API_KEY, "Content-Type": "application/json"}
+    response = requests.request("POST", url, headers=headers, json=payload)
+    response_json = response.json()
+    status_msg = response_json["status"]
+    if status_msg != "success":
+
+        errors = response_json["errors"]
+        msg = response_json["message"]
+        print(f"Couldn't make a call to the patient...{msg}...with errors: {errors}")
+        return JSONResponse(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            content={"message": f"Couldn't make a call to the patient...{msg}"},
+        )
 
     return JSONResponse(
         status_code=status.HTTP_200_OK,

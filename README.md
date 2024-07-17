@@ -1,10 +1,24 @@
 # Healthcare Call Bot
 
+# Technologies Used (TODO)
+
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 
 # Flow diagram (TODO)
 
-# Features (TODO)
+# Features
+
+- Automated calls to patients
+
+- Secure retrieval of questionnaire data
+
+- Dynamic patient information handling with questionnaire
+
+- Skip logic for questions based on answer history
+
+- Clever decision making, through prompting, to handle questions can be of various types, providing accurate responses
+
+- Calls can be ended prematurely with the data being saved for later submission
 
 # Prerequesites
 
@@ -26,7 +40,15 @@ This is a CRM call bot that is used to automate the process of calling patients 
 
 4. Install the dependencies by running
    `pip install -r requirements.txt`
-5. Run the application by running
+
+5. Make sure to create a `.env` file and add the following variables:
+
+   - EMAIL -> Provided by hospital CRM
+   - PASSWORD -> Provided by hospital CRM
+   - USER_KEY -> Base64 encoded string of your IPV4 address (could be set as a blank string too)
+   - BLAND_API_KEY -> API key from the bland.ai website
+
+6. Run the application by running
    `python app.py`
 
 **NOTE:** The API will be able to run and create the pathways but the webhook calls will not work as the webhook URL will be localhost. To test the webhook calls, you will need to deploy the application to a server. For this, you can use Render.com (or any other hosting service).

@@ -2,6 +2,10 @@
 
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 
+# Flow diagram (TODO)
+
+# Features (TODO)
+
 # Prerequesites
 
 1. Github.com Account: For version control
@@ -27,7 +31,111 @@ This is a CRM call bot that is used to automate the process of calling patients 
 
 **NOTE:** The API will be able to run and create the pathways but the webhook calls will not work as the webhook URL will be localhost. To test the webhook calls, you will need to deploy the application to a server. For this, you can use Render.com (or any other hosting service).
 
-# API Routes (WIP/TODO)
+# API Routes
+
+## `GET` Survey
+
+This endpoint is used to get the survey's metadata i.e. the project information. This endpoint only returns the data for a single project.
+
+#### Inputs
+
+surveyor_id (int): The ID of the surveyor who is calling the patient
+
+#### Outputs
+
+Entire JSON object that entails all the necessary information about the project
+
+## `GET` Calls
+
+This endpoint is focused on obtaining the patient's information from the CRM system. Every call made to this API endpoint will return the data of a different patient.
+
+#### Inputs
+
+project_id (int): The ID of the project's questionnaire
+surveyor_id (int): The ID of the surveyor who is calling the patient
+
+#### Outputs
+
+Entire JSON object that entails all the necessary information about the patient (including data to be used in the survey)
+
+## `GET` Questionnaire
+
+This endpoint is used to get the entire questionnaire for the project. This includes the skip logic, the questions, and the answers.
+
+#### Inputs
+
+project_id (int): The ID of the project's questionnaire
+surveyor_id (int): The ID of the surveyor who is calling the patient
+
+#### Outputs
+
+questionnaire (array of objects): Includes each question and its possible answers
+
+logic (array of objects): The skip logic for each question
+
+## `POST` Send Call
+
+The endpoint does the following steps in order:
+
+- Extracts only the necessary fields from the questionnaire and replaces all the placeholder values with the patient's data
+  - question id
+  - question text
+  - answer
+- Creates and updates the pathway for the project (using the bland.ai API)
+
+  - Forms all the nodes and edges for every question in the questionnaire
+
+- Sends a call to the patient, utilizing the newly created pathway for the conversation
+
+#### Inputs
+
+quest_data (object): The questionnaire data that is to be sent to the patient. This includes
+
+- questionnaire
+- logic
+
+caller_data (object): The data of the patient that is to be called. The format of this object is the same as the output of the `GET` Calls endpoint
+
+#### Outputs
+
+message (str): A message that tells the user that the call has been sent
+
+pathway_id (str): The bland.ai ID of the pathway that was created for the conversation
+
+## `POST` Skip Question
+
+This endpoint is used to determine if the next question in the questionnaire should be asked or not. This is done by checking the history of the patient's answers and the skip logic for the next question.
+
+#### Inputs
+
+skip_logic (array of objects): The skip logic for the question
+answer_history (array of objects): The history of the patient's answers
+question_id (int): The ID of the question that is to be asked next
+
+#### Outputs
+
+proceed (bool): A boolean that tells the user if the next question should be asked or not
+
+## `POST` Submit Questionnaire
+
+This endpoint is used to submit the answers of the patient to the CRM system given they have answered all the questions. If the patient has not answered all the questions, the data is saved in a temporary storage (excel sheet in our case).
+
+This endpoint is called by the pathway if a call ends prematurely for a plethora of reasons or if the questionnaire is completed.
+
+#### Inputs
+
+variables (object): The webhook data returned from the pathway
+The object inludes the following fields:
+
+- pathway_id (str): The ID of the pathway that was used for the conversation
+- pathway_name (str): The name of the pathway that was used for the conversation
+- questionnaire (array of objects): The questionnaire that was used for the conversation
+- chcs_call_id (int): The ID of the call that was made to the patient
+- phone_number (str): The phone number of the patient formatted to E.164 standards
+
+#### Outputs
+
+message (str): A message that tells the user that the answers have been submitted
 
 ## Pathway creation route
 
@@ -90,3 +198,5 @@ e.g. if we are on question 2's webhook response and question 3 is being skipped
 then we should go to the webhook node AFTER question 3 (which will be question 4's webhook node)
 
 NOTE#2: For every webhook node, the history will consist of ALL the past answers.
+
+# Future Aspects (TODO)

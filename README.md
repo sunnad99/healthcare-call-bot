@@ -199,4 +199,20 @@ then we should go to the webhook node AFTER question 3 (which will be question 4
 
 NOTE#2: For every webhook node, the history will consist of ALL the past answers.
 
-# Future Aspects (TODO)
+# Future Aspects
+
+This section will include the future aspects of the project that could be implemented to make the project more robust and efficient. It also includes additional functionalities that will be added on top to make the project more functional.
+
+- [ ] Make.com/Zapier automation to call new patients automatically at regular intervals
+      NOTE: Right now, the calls are made manually by the surveyor.
+
+- [ ] Use a database to store calls information instead of excel sheets
+
+- [ ] An automation for recalling patients who:
+
+  - Did not answer the call
+  - Did not answer all the questions
+  - Call dropped for problems on the patient's end
+  - Call dropped for problems on the bot's end
+
+- [ ] Fine tune prompts for the questions to be more accurate and precise to what the surveyor wants to ask

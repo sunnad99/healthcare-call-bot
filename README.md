@@ -14,16 +14,13 @@
 
 - [ ] make a flow diagram of how the information will flow
 
-- [ ] Add pictures of the used technologies
+- [x] Add pictures of the used technologies
 
 - [ ] talk about how each problem was solved and tackled
   - skip logic for questions
   - Creation of dynamic questionnaires for each individual
 
-# Technologies Used (TODO)
-
 <table>
-
 <tr>
 
 <td align="center">
@@ -45,7 +42,6 @@
   <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/pandas%20image.png" alt="Pandas">
 </a>
   <p><em>Pandas</em></p>
-</a>
 </td>
 
 <td align="center">
@@ -54,6 +50,7 @@
 </a>
   <p><em>Render</em></p>
 </td>
+
 </tr>
 </table>
 

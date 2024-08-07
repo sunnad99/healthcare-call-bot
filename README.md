@@ -1,6 +1,31 @@
 # Healthcare Call Bot
 
+# Remaining documentation things:
+
+- [ ] Add a section on how to deploy to render.com
+
+- [ ] Add a section about how the CRM data was retrieved
+
+- [ ] move prompt related information to another .md file and add a hyperlink in readme.md to that file
+      (prompts.md)
+
+- [ ] Move detailed route information of how exactly routes work from readme.md and put in another file
+      (routes.md)
+
+- [ ] make a flow diagram of how the information will flow
+
+- [ ] Add pictures of the used technologies
+
+- [ ] talk about how each problem was solved and tackled
+  - skip logic for questions
+  - Creation of dynamic questionnaires for each individual
+
 # Technologies Used (TODO)
+
+![Bland.Ai](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/bland.ai%20image.jpg)
+![FastAPI](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/fastapi%20image.png)
+![Pandas](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/pandas%20image.png)
+![Render](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/render.com%20image.png)
 
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 

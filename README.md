@@ -22,17 +22,25 @@
 
 # Technologies Used (TODO)
 
-![](https://github.com/sunnad99/crm-callbot-api/blob/db136fa8335ecbc264eee469aeb490a85b5e98e7/img/bland.ai%20image.jpg)
-_Bland.Ai_
+<div align="center">
+  <img src="https://github.com/sunnad99/crm-callbot-api/blob/db136fa8335ecbc264eee469aeb490a85b5e98e7/img/bland.ai%20image.jpg" alt="Bland.AI">
+  <p><em>Bland.AI</em></p>
+</div>
 
-![](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/fastapi%20image.png)
-_FastAPI_
+<div align="center">
+  <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/fastapi%20image.png" alt="FastAPI">
+  <p><em>FastAPI</em></p>
+</div>
 
-![](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/pandas%20image.png)
-_Pandas_
+<div align="center">
+  <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/pandas%20image.png" alt="Pandas">
+  <p><em>Caption 3</em></p>
+</div>
 
-![](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/render.com%20image.png)
-_Render_
+<div align="center">
+  <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/render.com%20image.png" alt="Render">
+  <p><em>Render</em></p>
+</div>
 
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 

@@ -27,22 +27,31 @@
 <tr>
 
 <td align="center">
+<a href="https://bland.ai">
   <img src="https://github.com/sunnad99/crm-callbot-api/blob/db136fa8335ecbc264eee469aeb490a85b5e98e7/img/bland.ai%20image.jpg" alt="Bland.AI">
+</a>
   <p><em>Bland.AI</em></p>
 </td>
 
 <td align="center">
+<a href="https://fastapi.tiangolo.com/">
   <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/fastapi%20image.png" alt="FastAPI">
+</a>
   <p><em>FastAPI</em></p>
 </td>
 
 <td align="center">
+<a href="https://pandas.pydata.org/">
   <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/pandas%20image.png" alt="Pandas">
+</a>
   <p><em>Pandas</em></p>
+</a>
 </td>
 
 <td align="center">
+<a href="https://render.com">
   <img src="https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/render.com%20image.png" alt="Render">
+</a>
   <p><em>Render</em></p>
 </td>
 </tr>

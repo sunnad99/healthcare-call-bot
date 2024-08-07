@@ -22,7 +22,7 @@
 
 # Technologies Used (TODO)
 
-![Bland.Ai](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/bland.ai%20image.jpg)
+![Bland.Ai](https://github.com/sunnad99/crm-callbot-api/blob/db136fa8335ecbc264eee469aeb490a85b5e98e7/img/bland.ai%20image.jpg)
 ![FastAPI](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/fastapi%20image.png)
 ![Pandas](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/pandas%20image.png)
 ![Render](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/render.com%20image.png)

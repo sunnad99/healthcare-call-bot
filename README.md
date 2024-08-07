@@ -23,9 +23,9 @@
 # Technologies Used (TODO)
 
 ![Bland.Ai](https://github.com/sunnad99/crm-callbot-api/blob/db136fa8335ecbc264eee469aeb490a85b5e98e7/img/bland.ai%20image.jpg)
-![FastAPI](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/fastapi%20image.png)
-![Pandas](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/pandas%20image.png)
-![Render](https://github.com/sunnad99/crm-callbot-api/blob/82780cd5e7728d0943131f8c465e774e344b5b69/img/render.com%20image.png)
+![FastAPI](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/fastapi%20image.png)
+![Pandas](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/pandas%20image.png)
+![Render](https://github.com/sunnad99/crm-callbot-api/blob/4a856cbbb5889cbd68d17a515ddbcdc51e46e4f3/img/render.com%20image.png)
 
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 

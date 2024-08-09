@@ -12,7 +12,7 @@
 - [ ] Move detailed route information of how exactly routes work from readme.md and put in another file
       (routes.md)
 
-- [ ] make a flow diagram of how the information will flow
+- [x] make a flow diagram of how the information will flow
 
 - [x] Add pictures of the used technologies
 
@@ -56,7 +56,11 @@
 
 This is a CRM call bot that is used to automate the process of calling patients and asking them questions about their visit to the hospital. The bot asks questions from a questionnaire, records the answers, and then sends the data to the hospital's CRM system.
 
-# Flow diagram (TODO)
+# Flow diagram
+
+<div align="center">
+  <img src="img/CRM Callbot flowchat.png" alt="Flowchart">
+</div>
 
 # Features
 

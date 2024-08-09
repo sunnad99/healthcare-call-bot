@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" version="24.7.6">
+  <diagram name="Page-1" id="c7558073-3199-34d8-9f00-42111426c3f3">
+    <mxGraphModel dx="993" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-103" target="ErG2O9qAp3Nakc66tyu8-106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-103" value="Make.com" style="whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeWidth=3;fillColor=#FFFFCC" vertex="1" parent="1">
+          <mxGeometry x="79" y="37.5" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-104" value="Scheduled &#xa;automation" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="210" y="32.5" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-135" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-106" target="ErG2O9qAp3Nakc66tyu8-109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-106" value="&lt;p style=&quot;margin: 0px; margin-top: 4px; text-align: center; text-decoration: underline;&quot;&gt;&lt;strong&gt;&lt;strong&gt;Process&lt;/strong&gt;&amp;nbsp;1&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;Retrieve&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;surveyor,&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;survey and patient data.&lt;/p&gt;" style="verticalAlign=middle;align=center;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fontStyle=1;strokeWidth=3;fillColor=#E6FFCC" vertex="1" parent="1">
+          <mxGeometry x="290" y="30" width="174" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-108" value="Prep bland.ai data" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="379" y="140" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-109" target="ErG2O9qAp3Nakc66tyu8-110">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-109" value="Our API:&#xa;/sendCall&#xa;endpoint" style="whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeWidth=3;fillColor=#FFFFCC" vertex="1" parent="1">
+          <mxGeometry x="289" y="188.75" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-110" target="ErG2O9qAp3Nakc66tyu8-114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-110" value="&lt;p style=&quot;margin: 0px; margin-top: 4px; text-align: center; text-decoration: underline;&quot;&gt;&lt;strong&gt;&lt;strong&gt;Process&lt;/strong&gt;&amp;nbsp;2&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;Form conversational&lt;/p&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;pathway&lt;/p&gt;" style="verticalAlign=middle;align=center;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fontStyle=1;strokeWidth=3;fillColor=#E6FFCC" vertex="1" parent="1">
+          <mxGeometry x="599" y="185" width="157" height="67.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-112" value="Make request to&#xa; bland.ai&#xa;" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="470" y="228.75" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-113" value="Send a call&#xa;to the patient" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="580" y="310" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-156" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-114" target="ErG2O9qAp3Nakc66tyu8-123">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-158" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-114" target="ErG2O9qAp3Nakc66tyu8-118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-114" value="Bland.ai" style="whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeWidth=3;fillColor=#FFFFCC" vertex="1" parent="1">
+          <mxGeometry x="440" y="363.75" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-153" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-118" target="ErG2O9qAp3Nakc66tyu8-152">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-118" value="&lt;p style=&quot;margin: 0px; margin-top: 4px; text-align: center; text-decoration: underline;&quot;&gt;&lt;strong&gt;&lt;strong&gt;Process&lt;/strong&gt;&amp;nbsp;3&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;Patient ends the call early&lt;/p&gt;" style="verticalAlign=middle;align=center;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fontStyle=1;strokeWidth=3;fillColor=#E6FFCC" vertex="1" parent="1">
+          <mxGeometry x="210" y="543.75" width="204" height="92.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-145" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-123" target="ErG2O9qAp3Nakc66tyu8-144">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-123" value="&lt;p style=&quot;margin: 0px; margin-top: 4px; text-align: center; text-decoration: underline;&quot;&gt;&lt;strong&gt;&lt;strong&gt;Process&lt;/strong&gt;&amp;nbsp;4&lt;br&gt;&lt;/strong&gt;&lt;/p&gt;&lt;hr&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;Patient decides to complete&lt;/p&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;the entire survey/ patient&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;finishes the necessary number of&lt;/p&gt;&lt;p style=&quot;margin: 0px; margin-left: 8px;&quot;&gt;questions&lt;/p&gt;" style="verticalAlign=middle;align=center;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;fontStyle=1;strokeWidth=3;fillColor=#E6FFCC" vertex="1" parent="1">
+          <mxGeometry x="543" y="543.75" width="204" height="92.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-141" value="Store patient responses &#xa;in google sheets" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="384" y="730" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ErG2O9qAp3Nakc66tyu8-144" target="ErG2O9qAp3Nakc66tyu8-152">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-144" value="CRM API" style="whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeWidth=3;fillColor=#FFFFCC" vertex="1" parent="1">
+          <mxGeometry x="600" y="760" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-151" value="Send patient &#xa;response to CRM" style="text;spacingTop=-5;align=center" vertex="1" parent="1">
+          <mxGeometry x="680" y="680" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ErG2O9qAp3Nakc66tyu8-152" value="GSpread API" style="whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=1;strokeWidth=3;fillColor=#FFFFCC" vertex="1" parent="1">
+          <mxGeometry x="267" y="760" width="90" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

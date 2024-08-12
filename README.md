@@ -2,7 +2,7 @@
 
 # Remaining documentation things:
 
-- [ ] Add a section on how to deploy to render.com
+- [x] Add a section on how to deploy to render.com
 
 - [ ] Add a section about how the CRM data was retrieved
 
@@ -104,10 +104,33 @@ This is a CRM call bot that is used to automate the process of calling patients 
    - USER_KEY -> Base64 encoded string of your IPV4 address (could be set as a blank string too)
    - BLAND_API_KEY -> API key from the bland.ai website
 
-6. Run the application by running
-   `python app.py`
+6. Run the application by running the following command
+   `uvicorn app:app --host 0.0.0.0`
 
 **NOTE:** The API will be able to run and create the pathways but the webhook calls will not work as the webhook URL will be localhost. To test the webhook calls, you will need to deploy the application to a server. For this, you can use Render.com (or any other hosting service).
+
+# Cloud Deployment (Render.com)
+
+1. Register and login to Render (preferrably with Github)
+2. Click on New -> Web Service
+3. Choose the repository
+4. Then, on the normal settings, follow the below steps:
+   - Provide a name
+   - Choose your region
+   - Set the start command as
+     `uvicorn app:app --host 0.0.0.0`
+   - Set the environment variables:
+     - PYTHON_VERSION to "3.11.4"
+     - EMAIL to your email which is used on the CRM
+     - PASSWORD as the password used on the CRM account
+     - USER_KEY as a base64 encoded string of your IPV4 address (could be set as a blank string too)
+     - BLAND_API_KEY as the API key obtained from bland.ai
+5. In the advanced settings, set the following:
+
+   - Set the Health Check to "/"
+   - Choose the auto deploy. If yes, then everytime a commit is pushed, the service will redploy automatically.
+
+6. Once done, click "Deploy Web Service"
 
 # API Routes
 

@@ -99,10 +99,20 @@ This is a CRM call bot that is used to automate the process of calling patients 
 
 5. Make sure to create a `.env` file and add the following variables:
 
+   - SERVICE_BASE_URL -> Base URL of this current call bot service. For local development, it should be `http://localhost:8000`
    - EMAIL -> Provided by hospital CRM
    - PASSWORD -> Provided by hospital CRM
    - USER_KEY -> Base64 encoded string of your IPV4 address (could be set as a blank string too)
    - BLAND_API_KEY -> API key from the bland.ai website
+   - GSPREAD_SECRET_FILE -> Path to the google service account json file
+   - GSPREAD_SHEET_ID -> ID of the google sheet where the data is to be stored
+
+     - NOTE: This can be retrieved from the google sheets link for example in the link below,
+
+       https://docs.google.com/spreadsheets/d/abcxyz/edit?gid=0#gid=0
+
+       the sheet ID is the part after the `/d/` and before the `/edit`
+       so the sheet ID in this case would be `abcxyz`
 
 6. Run the application by running the following command
    `uvicorn app:app --host 0.0.0.0`
@@ -115,22 +125,32 @@ This is a CRM call bot that is used to automate the process of calling patients 
 2. Click on New -> Web Service
 3. Choose the repository
 4. Then, on the normal settings, follow the below steps:
+
    - Provide a name
    - Choose your region
    - Set the start command as
      `uvicorn app:app --host 0.0.0.0`
    - Set the environment variables:
      - PYTHON_VERSION to "3.11.4"
-     - EMAIL to your email which is used on the CRM
-     - PASSWORD as the password used on the CRM account
-     - USER_KEY as a base64 encoded string of your IPV4 address (could be set as a blank string too)
-     - BLAND_API_KEY as the API key obtained from bland.ai
+   - SERVICE_BASE_URL to the base URL of the service (for example, `https://your-service-name.onrender.com`)
+   - EMAIL to your email which is used on the CRM
+   - PASSWORD as the password used on the CRM account
+   - USER_KEY as a base64 encoded string of your IPV4 address (could be set as a blank string too)
+   - BLAND_API_KEY as the API key obtained from bland.ai
+   - GSPREAD_SECRET_FILE as the path to the google service account json file (see note at the end of this section)
+   - GSPREAD_SHEET_ID as the ID of the google sheet where the data is to be stored
+
 5. In the advanced settings, set the following:
 
    - Set the Health Check to "/"
    - Choose the auto deploy. If yes, then everytime a commit is pushed, the service will redploy automatically.
 
 6. Once done, click "Deploy Web Service"
+
+**NOTE:** The google service account json file is the file that is downloaded from the google cloud console when you create a service account. This file is used to authenticate the google sheets API. Make sure to upload this file to the service and set the path in the environment variables.
+
+See more information on how to create a service account and download the json file here:
+https://docs.gspread.org/en/latest/oauth2.html
 
 # API Routes
 

@@ -8,7 +8,7 @@ from .config import (
     YOUR_NAME,
 )
 from .utils import create_question_node, create_webhook_node, fill_placeholders
-from config import BASE_URL
+from config import SERVICE_BASE_URL
 
 
 def extract_answers(row, patient_lang_id):
@@ -59,18 +59,11 @@ def extract_questionnaire_text(quest_data: dict, caller_data: dict, lang_id: int
     return quest_with_text_df
 
 
-def create_nodes_and_edges(
-    quest_with_text_df: pd.DataFrame,
-    quest_data: dict,
-    caller_data: dict,
-    pathway_id: str,
-) -> tuple:
+def create_nodes_and_edges(quest_with_text_df: pd.DataFrame, quest_data: dict) -> tuple:
 
-    quest = quest_data["questionnaire"]
     skip_logic = quest_data["logic"]
 
     nodes, edges, current_quest = [], [], None
-    caller_id, project_id = caller_data["callId"], caller_data["projectId"]
     skip_logic_df = pd.DataFrame(skip_logic).astype({"questionId": "Int64", "answerId": "Int64"})
     total_questions = len(quest_with_text_df)
     for index in range(1, len(quest_with_text_df)):
@@ -184,26 +177,6 @@ The call should end right here immediately after the response is given.
                     }
                 )
 
-                # # Moving from Service Recovery Closing to End Call
-                # edges.append(
-                #     {
-                #         "id": f"prevQuest{next_quest_id}ToEndCallWebhookNode",
-                #         "source": f"Question {next_quest_id}",
-                #         "target": "End Call Webhook Node",
-                #         "label": "proceed",
-                #     }
-                # )
-
-                # # Moving from Satisfied Closing to End Call
-                # edges.append(
-                #     {
-                #         "id": f"prevQuest{satisfied_quest_id}ToEndCallWebhookNode",
-                #         "source": f"Question {satisfied_quest_id}",
-                #         "target": "End Call Webhook Node",
-                #         "label": "proceed",
-                #     }
-                # )
-
                 nodes.append(prev_node)
                 nodes.append(service_recovery_quest_node)
                 nodes.append(service_recovery_closing_node)
@@ -247,7 +220,7 @@ The call should end right here immediately after the response is given.
                 if all(pd.isna(next_quest_affected_data.answerId)):
                     should_be_next_question = True
 
-            webhook_url = f"{BASE_URL}/skip_question"
+            webhook_url = f"{SERVICE_BASE_URL}/skip_question"
             webhook_body = json.dumps(
                 {
                     "question_id": int(current_quest_id),
@@ -316,37 +289,5 @@ The call should end right here immediately after the response is given.
                     "label": "proceed",
                 }
             )
-
-    # Create the webhook node for submitting the questionnaire
-    # TODO: Keep this here until we have no use for it anymore
-    # end_call_webhook_url = f"{BASE_URL}/submit_questionnaire"
-    # end_call_webhook_body = json.dumps(
-    #     {
-    #         "pathway_id": pathway_id,
-    #         "survey": [
-    #             {
-    #                 "ansId": "{{answerID{ques_id}}}".replace("{ques_id}", f"{quest_id}"),
-    #                 "quesId": int(quest_with_text_df.iloc[quest_id - 1].quesId),
-    #                 "sequence": quest_id,
-    #                 "uniqueId": "b616d37750034658a930196ad0fbccd851158e42fb83478195",  # TODO: Generate a unique id using SHA-1
-    #                 "callId": caller_id,
-    #                 "openEnded": None,
-    #                 "projectId": project_id,
-    #             }
-    #             for quest_id in range(1, len(quest_with_text_df) + 1)
-    #         ],
-    #         "isPut": False,
-    #         "questionnaire": quest,
-    #     }
-    # )
-
-    # end_call_webhook_node = create_webhook_node(
-    #     current_quest_id,
-    #     end_call_webhook_url,
-    #     end_call_webhook_body,
-    #     quest_name="End Call Webhook Node",
-    # )
-    # # Add the end call webhook node
-    # nodes.append(end_call_webhook_node)
 
     return nodes, edges

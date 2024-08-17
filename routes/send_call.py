@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 
-from config import BASE_URL
+from config import SERVICE_BASE_URL
 from credentials import BLAND_API_KEY
 from services.bland_ai.main import (
     create_nodes_and_edges,
@@ -80,12 +80,8 @@ async def send_call(request_body: SendCallInput):
     print("Updating pathway...")
     pathway_id = response_json["pathway_id"]
     url = f"https://api.bland.ai/v1/convo_pathway/{pathway_id}"
-    nodes, edges = create_nodes_and_edges(
-        quest_with_text_df,
-        quest_data=quest_data,
-        caller_data=caller_data,
-        pathway_id=pathway_id,
-    )
+    nodes, edges = create_nodes_and_edges(quest_with_text_df, quest_data=quest_data)
+
     payload = {"name": pathway_name, "nodes": nodes, "edges": edges}
     headers = {
         "Authorization": BLAND_API_KEY,
@@ -119,11 +115,10 @@ async def send_call(request_body: SendCallInput):
         "phone_number": formatted_phone_number,
         "pathway_id": pathway_id,
         "start_node_id": "Question 1",
-        "voice": "Jordan",  # TODO: Set voice here
         "interruption_threshold": 200,
         "max_duration": 60,
         "record": True,
-        "webhook": f"{BASE_URL}/questionnaire/submit",
+        "webhook": f"{SERVICE_BASE_URL}/questionnaire/submit",
         "request_data": {
             "pathway_id": pathway_id,
             "pathway_name": pathway_name,

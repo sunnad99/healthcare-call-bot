@@ -10,7 +10,7 @@ from utils import get_user_details
 from services.bland_ai.utils import extract_chosen_answer
 from .route_params.generic import BadRequestResponse, UnauthorizedResponse
 
-# from config import QUEST_SHEET, QUEST_SHEET_HEADERS # TODO: Uncomment it when done
+from config import QUEST_SHEET, QUEST_SHEET_HEADERS
 
 router = APIRouter()
 
@@ -89,7 +89,8 @@ async def submit_questionnaire(request: Request):
     }
 
     # TODO: Make sure also that if the the necessary amount of questions are answered,
-    # i.e. all the questions up to (and not including) the last question are answered and if the call dropped before the last question, the submission status should be "complete"
+    # i.e. all the questions up to (and not including) the last question are answered
+    # and if the call dropped before the last question, the submission status should be "complete"
     if len(quest_simple) == len(questionnaire):
         print("The number of questions answered is equal to the number of questions in the questionnaire")
         quest_spreadsheet_data["callStatus"] = "complete"
